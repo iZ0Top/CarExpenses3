@@ -1,5 +1,6 @@
 package com.alex.carexpenses3.model
 
+
 data class Event(
     val id: Int,
     val type: Int,

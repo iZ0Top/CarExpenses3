@@ -20,15 +20,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
-
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_list, R.id.navigation_info, R.id.navigation_notifications
+
+        val toolbar = binding.toolbar
+        setSupportActionBar(toolbar)
+
+        val appBarConfiguration = AppBarConfiguration(setOf(
+                R.id.navigation_list, R.id.navigation_info
             )
         )
+
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
