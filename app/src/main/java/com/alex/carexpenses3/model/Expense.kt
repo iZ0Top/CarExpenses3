@@ -1,5 +1,7 @@
 package com.alex.carexpenses3.model
 
+import java.io.Serializable
+
 data class Expense(
     val id: Int,
     val type: Int,
@@ -10,4 +12,4 @@ data class Expense(
     val description: String,
     val detailDescription: String,
     val partNum: String,
-)
+): Serializable

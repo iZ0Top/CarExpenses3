@@ -1,83 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:elevation="10dp"
-    app:cardCornerRadius="10dp">
+    app:cardElevation="10dp"
+    app:cardCornerRadius="10dp"
+    app:cardBackgroundColor="#F3F3F3">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="5dp">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
 
         <TextView
-            android:id="@+id/interpunct"
-            android:layout_width="wrap_content"
+            android:id="@+id/date"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="•"
+            android:text="01.01.0001"
+            android:textStyle="bold"
+            android:gravity="start"
+            android:textSize="@dimen/size_item_event_header"
+            app:layout_constraintEnd_toStartOf="@+id/odometer"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/odometer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:text="Description"
-            android:gravity="start"
-            app:layout_constraintEnd_toStartOf="@+id/quantity"
-            app:layout_constraintStart_toEndOf="@+id/interpunct"
+            android:text="000000 km"
+            android:textStyle="bold"
+            android:textSize="@dimen/size_item_event_header"
+            android:gravity="center_horizontal"
+            app:layout_constraintBottom_toTopOf="@id/recycler_view_child"
+            app:layout_constraintEnd_toStartOf="@id/sum"
+            app:layout_constraintStart_toEndOf="@id/date"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/quantity"
-            android:layout_width="wrap_content"
+            android:id="@+id/sum"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:lines="1"
-            android:text="00 шт"
-            android:gravity="end"
-            app:layout_constraintEnd_toStartOf="@+id/price"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/description"/>
-
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="75dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:lines="1"
-            android:text="0000 грн"
+            android:text="0000 uah"
+            android:textStyle="bold"
+            android:textSize="@dimen/size_item_event_header"
             android:gravity="end"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/quantity"/>
+            app:layout_constraintStart_toEndOf="@+id/odometer"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/detail"
-            android:layout_width="0dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@id/recycler_view_child"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Detial"
             android:layout_marginTop="5dp"
-            app:layout_constraintTop_toBottomOf="@id/description"
-            app:layout_constraintStart_toStartOf="@id/description"
-            app:layout_constraintEnd_toEndOf="@id/price"
-            />
-        <TextView
-            android:id="@+id/part_num"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Part number"
-            android:layout_marginTop="5dp"
-            app:layout_constraintTop_toBottomOf="@id/detail"
-            app:layout_constraintStart_toStartOf="@id/description"
-            app:layout_constraintEnd_toEndOf="@id/price"
-            />
-
-
-
+            android:layout_marginBottom="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/odometer" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
