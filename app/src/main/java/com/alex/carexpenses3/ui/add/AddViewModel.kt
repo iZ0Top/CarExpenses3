@@ -8,10 +8,19 @@ import com.alex.carexpenses3.model.Expense
 
 class AddViewModel(application: Application): AndroidViewModel(application) {
 
-    private var list = MutableLiveData<List<Expense>>()
+    var listLD = MutableLiveData<List<Expense>>()
+    private var list = mutableListOf<Expense>()
 
 
-    fun addToList(){
+    fun addToList(expense: Expense){
+        list.add(expense)
+        listLD.postValue(list)
+    }
+
+    fun addToDB(){
+
 
     }
+
+
 }
