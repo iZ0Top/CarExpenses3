@@ -13,10 +13,7 @@ class AddDialog: DialogFragment() {
 
     private var _dialogBinding: FragmentAddDialogBinding? = null
     val dialogBinding get() = _dialogBinding!!
-
     private lateinit var expense: Expense
-
-
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
@@ -37,16 +34,13 @@ class AddDialog: DialogFragment() {
         val d = dialog as AlertDialog
         val button = d.getButton(DialogInterface.BUTTON_POSITIVE)
         button.setOnClickListener {
+            validationData()
         }
-
-
-
     }
 
     private fun validationData(){
 
-
-        expense = Expense(1, 1, 100, 1, 10.0, "01.01.0001", "Description", "Detail description", "Part number")
+        expense = Expense(1, 0,1, 100, 1, 10.0, "01.01.0001", "Description", "Detail description", "Part number")
 
         val bundle = Bundle()
         bundle.putSerializable("bundle_key", expense)

@@ -24,9 +24,9 @@ interface AppDao {
     @Insert
     suspend fun insertCar(car: Car)
     @Insert
-    suspend fun insertEvent(event: Event)
+    suspend fun insertEvent(event: Event): Long
     @Insert
-    suspend fun insertExpense(expense: Expense)
+    suspend fun insertExpensesList(expensesList: List<Expense>)
 
     @Delete
     suspend fun deleteCar(car: Car)

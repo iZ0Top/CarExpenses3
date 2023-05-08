@@ -7,13 +7,14 @@ import java.io.Serializable
 @Entity(tableName = "table_expenses")
 data class Expense(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val type: Int,
-    val odometer: Int,
-    val quantity: Int,
-    val price: Double,
-    val date: String,
-    val description: String,
-    val detailDescription: String,
-    val partNum: String,
+    var id: Int,
+    var parent_id: Int,
+    var type: Int,
+    var odometer: Int,
+    var quantity: Int,
+    var price: Double,
+    var date: String,
+    var description: String,
+    var detailDescription: String,
+    var partNum: String,
 ): Serializable

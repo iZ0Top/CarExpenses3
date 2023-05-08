@@ -8,26 +8,27 @@ import com.alex.carexpenses3.model.Expense
 class AppRepository(private val appDao: AppDao): DatabaseRepository {
 
     override val allCars: LiveData<List<Car>>
-        get() = TODO("Not yet implemented")
+        get() = appDao.getAllCars()
 
     override val allEvents: LiveData<List<Event>>
-        get() = TODO("Not yet implemented")
+        get() = appDao.getEvents()
 
     override val allExpenses: LiveData<List<Expense>>
-        get() = TODO("Not yet implemented")
+        get() = appDao.getExpenses()
 
     override suspend fun insertCar(car: Car, onSuccess: () -> Unit) {
         appDao.insertCar(car)
         onSuccess()
     }
 
-    override suspend fun insertEvent(event: Event, onSuccess: () -> Unit) {
-        appDao.insertEvent(event)
+    override suspend fun insertEvent(event: Event, onSuccess: () -> Unit): Long {
+        val x = appDao.insertEvent(event)
         onSuccess()
+        return x
     }
 
-    override suspend fun insertExpense(expense: Expense, onSuccess: () -> Unit) {
-        appDao.insertExpense(expense)
+    override suspend fun insertExpensesList(expensesList: List<Expense>, onSuccess: () -> Unit) {
+        appDao.insertExpensesList(expensesList)
         onSuccess()
     }
 

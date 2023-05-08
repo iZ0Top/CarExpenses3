@@ -7,7 +7,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.alex.carexpenses3.database.AppDatabase
+import com.alex.carexpenses3.database.AppRepository
 import com.alex.carexpenses3.databinding.ActivityMainBinding
+import com.alex.carexpenses3.utils.APP_ACTIVITY
+import com.alex.carexpenses3.utils.REPOSITORY
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,6 +19,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        APP_ACTIVITY = this
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -30,8 +36,8 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
     }
 }
