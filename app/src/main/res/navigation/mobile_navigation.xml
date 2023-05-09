@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_navigation_list_to_navigation_info"
             app:destination="@id/navigation_info" />
+        <action
+            android:id="@+id/action_navigation_list_to_addFragment"
+            app:destination="@id/addFragment" />
     </fragment>
 
     <fragment
@@ -22,5 +25,19 @@
             android:id="@+id/action_navigation_info_to_navigation_list"
             app:destination="@id/navigation_list" />
     </fragment>
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.alex.carexpenses3.ui.add.AddFragment"
+        android:label="fragment_add"
+        tools:layout="@layout/fragment_add" >
+        <action
+            android:id="@+id/action_addFragment_to_navigation_list"
+            app:destination="@id/navigation_list" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.alex.carexpenses3.ui.setting.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
 
 </navigation>

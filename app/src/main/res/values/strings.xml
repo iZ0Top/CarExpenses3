@@ -2,6 +2,15 @@
     <string name="app_name">CarExpenses3</string>
     <string name="title_info">Info</string>
     <string name="title_list">List</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_quantity">Кількість</string>
+    <string name="hint_0">0</string>
+    <string name="hint_description">Назава деталі</string>
+    <string name="hint_description_detail">Опис деталі</string>
+    <string name="hint_part_number">Номер деталі</string>
+    <string name="text_price">Ціна</string>
+    <string name="text_quantity_title">шт</string>
+    <string name="text_price_title">грн</string>
 </resources>

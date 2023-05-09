@@ -6,25 +6,34 @@
     android:layout_height="wrap_content">
 
 
+
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/description"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:ems="10"
         android:inputType="text"
-        android:text="Name"
+        android:hint="@string/hint_description"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toTopOf="@id/detail_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ib_work" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/detail_description"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:textSize="20sp"
         android:inputType="text"
-        android:text="Name"
+        android:hint="@string/hint_description_detail"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toTopOf="@id/part_number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,93 +41,94 @@
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/part_number"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
-        android:text="Name"
-        app:layout_constraintBottom_toTopOf="@id/price"
+        android:textSize="20sp"
+        android:hint="@string/hint_part_number"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toTopOf="@id/quantity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detail_description" />
+
+    <TextView
+        android:id="@+id/text_quantity_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/text_quantity"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/quantity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/quantity"
+        app:layout_constraintEnd_toStartOf="@id/quantity"/>
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/quantity"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:digits="1234567890"
         android:ems="10"
-        android:inputType="text"
-        android:text="Name"
-        app:layout_constraintBottom_toBottomOf="@+id/text_quantity_title"
+        android:hint="@string/hint_0"
+        android:inputType="numberDecimal"
         app:layout_constraintStart_toEndOf="@+id/text_quantity_title"
-        app:layout_constraintTop_toTopOf="@+id/text_quantity_title" />
+        app:layout_constraintTop_toBottomOf="@+id/part_number"
+        app:layout_constraintEnd_toStartOf="@id/text_quantity_title2"
+        app:layout_constraintBottom_toTopOf="@id/price"/>
+
+    <TextView
+        android:id="@+id/text_quantity_title2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/text_quantity_title"
+        app:layout_constraintBottom_toBottomOf="@+id/quantity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/quantity"
+        app:layout_constraintTop_toTopOf="@+id/quantity" />
+
+    <TextView
+        android:id="@+id/text_price_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/text_price"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/price"
+        app:layout_constraintEnd_toStartOf="@+id/price"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/price" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/price"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:digits="1234567890."
         android:ems="10"
-        android:inputType="text"
-        android:text="000"
+        android:hint="@string/hint_0"
+        android:inputType="numberDecimal"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintStart_toEndOf="@id/text_price_title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/text_price_title2"
-        app:layout_constraintTop_toBottomOf="@+id/part_number" />
-
-    <TextView
-        android:id="@+id/text_price_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ціна"
-        app:layout_constraintBottom_toBottomOf="@+id/price"
-        app:layout_constraintEnd_toStartOf="@+id/price"
-        app:layout_constraintTop_toTopOf="@+id/price" />
+        app:layout_constraintTop_toBottomOf="@+id/quantity" />
 
     <TextView
         android:id="@+id/text_price_title2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="грн"
+        android:text="@string/text_price_title"
+        app:layout_constraintStart_toEndOf="@id/price"
         app:layout_constraintBottom_toBottomOf="@+id/price"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/price" />
-
-    <TextView
-        android:id="@+id/text_quantity_title2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="шт"
-        app:layout_constraintBottom_toBottomOf="@+id/quantity"
-        app:layout_constraintStart_toEndOf="@+id/quantity"
-        app:layout_constraintTop_toTopOf="@+id/quantity" />
-
-    <TextView
-        android:id="@+id/text_quantity_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Кількість"
-        app:layout_constraintBottom_toBottomOf="@+id/price"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/price" />
-
-    <ImageView
-        android:id="@+id/ib_work"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ib_part"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_add" />
-
-    <ImageView
-        android:id="@+id/ib_part"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/ib_work"
-        app:layout_constraintEnd_toStartOf="@+id/ib_work"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ib_work"
-        app:srcCompat="@drawable/ic_add" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
