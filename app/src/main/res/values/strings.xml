@@ -13,4 +13,5 @@
     <string name="text_price">Ціна</string>
     <string name="text_quantity_title">шт</string>
     <string name="text_price_title">грн</string>
+    <string name="text_1">1</string>
 </resources>

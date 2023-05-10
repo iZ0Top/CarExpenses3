@@ -31,8 +31,6 @@ class AddFragment : Fragment(){
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var mAdapter: AdapterExpense
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -61,6 +59,7 @@ class AddFragment : Fragment(){
         }
 
         mExpenseObserver = Observer {
+            Log.d(TAG, "edittextOdometer.mExpenseObserver - list size=${it.size} ")
             mAdapter.setList(it)
         }
 
@@ -91,6 +90,7 @@ class AddFragment : Fragment(){
         super.onResume()
 
         childFragmentManager.setFragmentResultListener("result_key", this) { _, result ->
+            Log.d(TAG, "AddFragment.childFragmentManager.setFragmentResultListener")
             val expense = result.getSerializable("bundle_key") as Expense
             addViewModel.addExpenseToList(expense)
         }

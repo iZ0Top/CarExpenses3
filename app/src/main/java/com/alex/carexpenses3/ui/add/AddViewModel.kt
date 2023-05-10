@@ -1,6 +1,7 @@
 package com.alex.carexpenses3.ui.add
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -8,9 +9,12 @@ import com.alex.carexpenses3.model.Event
 import com.alex.carexpenses3.model.Expense
 import com.alex.carexpenses3.utils.LAST_ODOMETER
 import com.alex.carexpenses3.utils.REPOSITORY
+import com.alex.carexpenses3.utils.TAG
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 class AddViewModel(application: Application): AndroidViewModel(application) {
 
@@ -25,12 +29,15 @@ class AddViewModel(application: Application): AndroidViewModel(application) {
 
 
     init {
-        val date = Date().toString()
+        Log.d(TAG, "AddViewModel.init")
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:MM", Locale.US)
+        val date = dateFormat.format(Date())
         event = Event(odometer = LAST_ODOMETER, date = date)
         eventLD.postValue(event)
     }
 
     fun addExpenseToList(expense: Expense){
+        Log.d(TAG, "AddViewModel.addExpenseToList")
         listExpenses.add(expense)
         listExpensesLD.postValue(listExpenses)
     }
@@ -41,6 +48,7 @@ class AddViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun setNewOdometer(odometer: Int){
+        Log.d(TAG, "AddViewModel.setNewOdometer")
         event.odometer = odometer
         eventLD.postValue(event)
     }
@@ -48,16 +56,8 @@ class AddViewModel(application: Application): AndroidViewModel(application) {
 
     }
 
-    fun updateData(onSuccess: () -> Unit){
-        for (x in listExpenses){
-            x.date = event.date
-            x.odometer = event.odometer
-            x.parent_id = currentId.toInt()
-        }
-        onSuccess()
-    }
-
     fun addEventToDB(onSuccess: () -> Unit){
+        Log.d(TAG, "AddViewModel.addEventToDB")
         viewModelScope.launch(Dispatchers.IO) {
             currentId = REPOSITORY.insertEvent(event) {
                 viewModelScope.launch(Dispatchers.Main){
@@ -67,8 +67,18 @@ class AddViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
+    fun updateData(onSuccess: () -> Unit){
+        Log.d(TAG, "AddViewModel.updateData")
+        for (x in listExpenses){
+            x.date = event.date
+            x.odometer = event.odometer
+            x.parent_id = currentId.toInt()
+        }
+        onSuccess()
+    }
 
     fun addExpensesListToDB(onSuccess:() -> Unit){
+        Log.d(TAG, "AddViewModel.addExpensesListToDB")
         viewModelScope.launch(Dispatchers.IO) {
             REPOSITORY.insertExpensesList(listExpenses) {
                 viewModelScope.launch(Dispatchers.Main){
