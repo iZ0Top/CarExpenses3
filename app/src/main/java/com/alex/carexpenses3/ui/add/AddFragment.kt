@@ -9,6 +9,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
@@ -18,8 +19,9 @@ import com.alex.carexpenses3.databinding.FragmentAddBinding
 import com.alex.carexpenses3.model.Event
 import com.alex.carexpenses3.model.Expense
 import com.alex.carexpenses3.ui.dialogs.AddDialog
-import com.alex.carexpenses3.utils.LAST_ODOMETER
+import com.alex.carexpenses3.utils.APP_ACTIVITY
 import com.alex.carexpenses3.utils.TAG
+import com.alex.carexpenses3.utils.showToast
 
 class AddFragment : Fragment(){
 
@@ -38,10 +40,8 @@ class AddFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentAddBinding.inflate(inflater, container, false)
         addViewModel = ViewModelProvider(this).get(AddViewModel::class.java)
-
         return binding.root
     }
-
 
     override fun onStart() {
         super.onStart()
@@ -53,31 +53,15 @@ class AddFragment : Fragment(){
         mRecyclerView.adapter = mAdapter
 
         mEventObserver = Observer {
-            binding.textDate.text = it.date
+            binding.textDate.text = it.date.substring(0,10)
             binding.textSum.text = it.sum.toString()
             binding.edittextOdometer.hint = it.odometer.toString()
         }
 
-        mExpenseObserver = Observer {
-            Log.d(TAG, "edittextOdometer.mExpenseObserver - list size=${it.size} ")
-            mAdapter.setList(it)
-        }
-
+        mExpenseObserver = Observer { mAdapter.setList(it) }
 
         addViewModel.eventLD.observe(viewLifecycleOwner, mEventObserver)
         addViewModel.listExpensesLD.observe(viewLifecycleOwner, mExpenseObserver)
-
-        binding.edittextOdometer.setOnFocusChangeListener { _, hasFocus ->
-            Log.d(TAG, "edittextOdometer.setOnFocusChangeListener, hasFocus = $hasFocus")
-            val value = binding.edittextOdometer.text.toString().toIntOrNull()
-            if (!hasFocus && (value != null) && (value > LAST_ODOMETER)){
-                addViewModel.setNewOdometer(value)
-            }
-            else{
-                binding.edittextOdometer.error = "Error!"
-            }
-        }
-
 
         binding.fab.setOnClickListener {
             val dialog = AddDialog()
@@ -85,10 +69,8 @@ class AddFragment : Fragment(){
         }
     }
 
-
     override fun onResume() {
         super.onResume()
-
         childFragmentManager.setFragmentResultListener("result_key", this) { _, result ->
             Log.d(TAG, "AddFragment.childFragmentManager.setFragmentResultListener")
             val expense = result.getSerializable("bundle_key") as Expense
@@ -96,19 +78,30 @@ class AddFragment : Fragment(){
         }
     }
 
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.toolbar_menu_add, menu)
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        val newOdometer = binding.edittextOdometer.text.toString().toIntOrNull()
 
         when(item.itemId){
             R.id.menu_save -> {
+                if (newOdometer == null) {
+                    binding.edittextOdometer.error = "is empty !"
+                    return false
+                }
+                if (addViewModel.listExpensesLD.value.isNullOrEmpty()){
+                    showToast("Додайте хоча б один запис !")
+                    return false
+                }
+                addViewModel.setNewOdometer(newOdometer)
                 addViewModel.addEventToDB {
                     addViewModel.updateData(){
                         addViewModel.addExpensesListToDB {
-
+                            APP_ACTIVITY.navController.navigate(R.id.action_addFragment_to_navigation_list)
                         }
                     }
                 }
@@ -116,8 +109,6 @@ class AddFragment : Fragment(){
         }
         return super.onOptionsItemSelected(item)
     }
-
-
 
     override fun onDestroy() {
         super.onDestroy()

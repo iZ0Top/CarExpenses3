@@ -3,7 +3,6 @@
     <string name="title_info">Info</string>
     <string name="title_list">List</string>
 
-
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_quantity">Кількість</string>
     <string name="hint_0">0</string>
@@ -14,4 +13,7 @@
     <string name="text_quantity_title">шт</string>
     <string name="text_price_title">грн</string>
     <string name="text_1">1</string>
+    <string name="text_km">%1$d км</string>
+    <string name="text_currency">%1$.1f грн</string>
+
 </resources>

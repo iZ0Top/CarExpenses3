@@ -10,6 +10,6 @@ data class Event(
     val id: Int = 0,
     val type: Int = 0,
     var odometer: Int = 0,
-    val sum: Double = 0.0,
+    var sum: Double = 0.0,
     val date: String = "",
 )

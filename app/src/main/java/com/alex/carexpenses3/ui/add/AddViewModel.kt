@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.alex.carexpenses3.model.Event
 import com.alex.carexpenses3.model.Expense
-import com.alex.carexpenses3.utils.LAST_ODOMETER
+import com.alex.carexpenses3.utils.ODOMETER
 import com.alex.carexpenses3.utils.REPOSITORY
 import com.alex.carexpenses3.utils.TAG
 import kotlinx.coroutines.Dispatchers
@@ -22,23 +22,25 @@ class AddViewModel(application: Application): AndroidViewModel(application) {
 
     var eventLD = MutableLiveData<Event>()
     var listExpensesLD = MutableLiveData<List<Expense>>()
-
     private var event: Event
     private var listExpenses = mutableListOf<Expense>()
-
-
+    private val dateFormatForDB = SimpleDateFormat("yyyy-MM-dd HH:MM:SS", Locale.US)
 
     init {
         Log.d(TAG, "AddViewModel.init")
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:MM", Locale.US)
-        val date = dateFormat.format(Date())
-        event = Event(odometer = LAST_ODOMETER, date = date)
+        event = Event(odometer = ODOMETER, date = dateFormatForDB.format(Date()))
         eventLD.postValue(event)
     }
 
     fun addExpenseToList(expense: Expense){
         Log.d(TAG, "AddViewModel.addExpenseToList")
         listExpenses.add(expense)
+        var sum = 0.0
+        for (s in listExpenses){
+            sum += (s.price * s.quantity)
+        }
+        event.sum = sum
+        eventLD.postValue(event)
         listExpensesLD.postValue(listExpenses)
     }
 
@@ -51,6 +53,7 @@ class AddViewModel(application: Application): AndroidViewModel(application) {
         Log.d(TAG, "AddViewModel.setNewOdometer")
         event.odometer = odometer
         eventLD.postValue(event)
+        ODOMETER = odometer
     }
     fun setNewDate(){
 
@@ -83,6 +86,7 @@ class AddViewModel(application: Application): AndroidViewModel(application) {
             REPOSITORY.insertExpensesList(listExpenses) {
                 viewModelScope.launch(Dispatchers.Main){
                     onSuccess()
+                    onCleared()
                 }
             }
         }
