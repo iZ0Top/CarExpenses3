@@ -7,13 +7,15 @@ import com.alex.carexpenses3.model.Expense
 
 interface DatabaseRepository {
 
-    val allCars: LiveData<List<Car>>
+    val allCars: LiveData<Car>
     val allEvents: LiveData<List<Event>>
     val allExpenses: LiveData<List<Expense>>
 
     suspend fun insertCar(car: Car, onSuccess: () -> Unit)
     suspend fun insertEvent(event: Event, onSuccess: () -> Unit): Long
     suspend fun insertExpensesList(expensesList: List<Expense>, onSuccess: () -> Unit)
+
+    suspend fun updateCar(car: Car, onSuccess: () -> Unit)
 
     suspend fun deleteCar(car: Car, onSuccess: () -> Unit)
     suspend fun deleteEvent(event: Event, onSuccess: () -> Unit)

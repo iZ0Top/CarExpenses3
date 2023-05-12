@@ -12,27 +12,14 @@ import com.alex.carexpenses3.databinding.FragmentSettingBinding
 class SettingFragment : Fragment() {
 
     private var _binding: FragmentSettingBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+    private lateinit var settingViewModel: SettingViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(SettingViewModel::class.java)
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        settingViewModel = ViewModelProvider(this).get(SettingViewModel::class.java)
         _binding = FragmentSettingBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        return binding.root
     }
 
     override fun onDestroyView() {

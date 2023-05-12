@@ -7,16 +7,135 @@
     tools:context=".ui.info.InfoFragment">
 
     <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
+        android:id="@+id/info_year"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
+        android:text="2001"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        app:layout_constraintEnd_toStartOf="@id/info_fuel_type"
+        app:layout_constraintBottom_toBottomOf="@+id/info_fuel_type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/info_fuel_type" />
+
+    <TextView
+        android:id="@+id/info_fuel_type"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="газ/бензин"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toStartOf="@+id/info_engine_volume"
+        app:layout_constraintStart_toEndOf="@+id/info_year"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/info_engine_volume"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="1.4"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        app:layout_constraintStart_toEndOf="@id/info_fuel_type"
+        app:layout_constraintBottom_toBottomOf="@+id/info_fuel_type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/info_fuel_type" />
+
+    <TextView
+        android:id="@+id/info_win_code"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textStyle="normal"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"
+        android:text="AAA123456BB789"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/info_fuel_type" />
+
+    <TextView
+        android:id="@+id/info_im_driving_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Я їзжу:"
+        android:textSize="18sp"
+        android:layout_marginTop="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info_win_code" />
+
+    <TextView
+        android:id="@+id/info_im_driving"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="4 роки 11 місяців 25 днів"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info_im_driving_text" />
+
+    <TextView
+        android:id="@+id/info_i_passed_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="end"
+        android:text="Я проїхав:"
+        android:layout_marginEnd="5dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/info_i_passed"
+        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info_im_driving" />
+
+    <TextView
+        android:id="@+id/info_i_spent_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:textSize="18sp"
+        android:text="Я витратив:"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toStartOf="@+id/textView11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info_i_passed_text" />
+
+    <TextView
+        android:id="@+id/info_i_passed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:layout_marginStart="5dp"
+        android:text="100000 км"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/info_i_passed_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/info_i_passed_text"
+        app:layout_constraintTop_toTopOf="@+id/info_i_passed_text" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="25000 грн."
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginStart="5dp"
+        android:gravity="start"
+        app:layout_constraintStart_toEndOf="@id/info_i_spent_text"
+        app:layout_constraintBottom_toBottomOf="@+id/info_i_spent_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/info_i_spent_text" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

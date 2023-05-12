@@ -7,7 +7,7 @@ import com.alex.carexpenses3.model.Expense
 
 class AppRepository(private val appDao: AppDao): DatabaseRepository {
 
-    override val allCars: LiveData<List<Car>>
+    override val allCars: LiveData<Car>
         get() = appDao.getAllCars()
 
     override val allEvents: LiveData<List<Event>>
@@ -29,6 +29,11 @@ class AppRepository(private val appDao: AppDao): DatabaseRepository {
 
     override suspend fun insertExpensesList(expensesList: List<Expense>, onSuccess: () -> Unit) {
         appDao.insertExpensesList(expensesList)
+        onSuccess()
+    }
+
+    override suspend fun updateCar(car: Car, onSuccess: () -> Unit) {
+        appDao.updateCar(car)
         onSuccess()
     }
 

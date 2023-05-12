@@ -15,5 +15,14 @@
     <string name="text_1">1</string>
     <string name="text_km">%1$d км</string>
     <string name="text_currency">%1$.1f грн</string>
+    <string name="toolbar_model">%1$s %2$s</string>
+
+    <string-array name="fuel_type">
+        <item>електро</item>
+        <item>бензин</item>
+        <item>газ</item>
+        <item>газ\бензин</item>
+        <item>дизель</item>
+    </string-array>
 
 </resources>

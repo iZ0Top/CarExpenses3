@@ -14,8 +14,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@color/teal_700"
         app:titleTextColor="@color/white"
+        android:gravity="center_horizontal"
         app:title="title"
-        />
+        android:textAlignment="center"
+        app:flow_horizontalAlign="center"/>
 
 
     <fragment
