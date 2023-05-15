@@ -36,7 +36,7 @@
             android:textStyle="bold"
             android:textSize="@dimen/size_item_event_header"
             android:gravity="center_horizontal"
-            app:layout_constraintBottom_toTopOf="@id/list_recycler_view"
+            app:layout_constraintBottom_toTopOf="@id/item_recycler_view"
             app:layout_constraintEnd_toStartOf="@id/item_event_sum"
             app:layout_constraintStart_toEndOf="@id/item_event_date"
             app:layout_constraintTop_toTopOf="parent" />
@@ -54,7 +54,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@id/list_recycler_view"
+            android:id="@+id/item_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"

@@ -39,7 +39,7 @@ class AdapterExpense: RecyclerView.Adapter<AdapterExpense.ExpenseHolder>() {
 
     }
 
-    class ExpenseHolder( val binding: ItemExpenseBinding): RecyclerView.ViewHolder(binding.root){
+    class ExpenseHolder(binding: ItemExpenseBinding): RecyclerView.ViewHolder(binding.root){
 
         val description = binding.description
         val detailDescription = binding.detail

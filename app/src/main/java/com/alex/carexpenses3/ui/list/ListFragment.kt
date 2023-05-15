@@ -80,6 +80,7 @@ class ListFragment : Fragment() {
         }
 
         mExpensesObserver = Observer {
+
             for (x in it) {
                 Log.d(TAG, x.toString() + "\n")
             }

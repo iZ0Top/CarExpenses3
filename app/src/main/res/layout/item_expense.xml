@@ -13,13 +13,7 @@
         android:layout_height="match_parent"
         android:padding="5dp">
 
-        <TextView
-            android:id="@+id/interpunct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="•"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
 
         <TextView
             android:id="@+id/description"
@@ -29,7 +23,7 @@
             android:text="Description"
             android:gravity="start"
             app:layout_constraintEnd_toStartOf="@+id/quantity"
-            app:layout_constraintStart_toEndOf="@+id/interpunct"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -49,6 +43,7 @@
             android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:lines="1"
             android:text="0000 грн"
             android:gravity="end"

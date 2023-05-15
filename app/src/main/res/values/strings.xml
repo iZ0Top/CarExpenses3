@@ -13,9 +13,11 @@
     <string name="text_quantity_title">шт</string>
     <string name="text_price_title">грн</string>
     <string name="text_1">1</string>
-    <string name="text_km">%1$d км</string>
-    <string name="text_currency">%1$.1f грн</string>
     <string name="toolbar_model">%1$s %2$s</string>
+    <string name="text_km_template">%1$d км</string>
+    <string name="text_quantity_template">%1$d шт</string>
+    <string name="text_currency_template">%1$.1f грн</string>
+
 
     <string-array name="fuel_type">
         <item>електро</item>
