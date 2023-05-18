@@ -1,5 +1,6 @@
 package com.alex.carexpenses3.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,6 +9,7 @@ import com.alex.carexpenses3.databinding.ItemEventBinding
 import com.alex.carexpenses3.model.Event
 import com.alex.carexpenses3.model.Expense
 import com.alex.carexpenses3.utils.APP_ACTIVITY
+import com.alex.carexpenses3.utils.TAG
 
 class AdapterEvent: RecyclerView.Adapter<AdapterEvent.MyHolder>() {
 
@@ -15,8 +17,8 @@ class AdapterEvent: RecyclerView.Adapter<AdapterEvent.MyHolder>() {
     var listExpenses = emptyList<Expense>()
 
     fun setList(list: List<Event>){
+        Log.d(TAG, "AdapterEvent.setList, list size = ${list.size}")
         listEvents = list
-        listExpenses =
         notifyDataSetChanged()
     }
 
@@ -29,15 +31,20 @@ class AdapterEvent: RecyclerView.Adapter<AdapterEvent.MyHolder>() {
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
+        Log.d(TAG, "AdapterEvent.onBindViewHolder")
         val event = listEvents[position]
-        var mAdapter = AdapterEventChild()
+        val mAdapter = AdapterEventChild()
 
         holder.date.text = event.date.substring(0,10)
         holder.odometer.text = APP_ACTIVITY.getString(R.string.text_km_template, event.odometer)
         holder.sum.text = APP_ACTIVITY.getString(R.string.text_currency_template, event.sum)
         holder.recyclerView.adapter = mAdapter
-        mAdapter.setData(event.id, listExpenses)
 
+        val newExpensesList = mutableListOf<Expense>()
+        for (x in listExpenses){
+            if (x.parent_id == event.id) newExpensesList.add(x)
+        }
+        mAdapter.setData(newExpensesList)
     }
 
     class MyHolder(private val binding: ItemEventBinding): RecyclerView.ViewHolder(binding.root){

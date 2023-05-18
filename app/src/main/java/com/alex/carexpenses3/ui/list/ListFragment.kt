@@ -70,6 +70,7 @@ class ListFragment : Fragment() {
         mCarObserver = Observer {
             Log.d(TAG, it.toString())
             mToolbar.title = APP_ACTIVITY.getString(R.string.toolbar_model, it.brand, it.model)
+
         }
 
         mEventsObserver = Observer {
@@ -80,7 +81,6 @@ class ListFragment : Fragment() {
         }
 
         mExpensesObserver = Observer {
-
             for (x in it) {
                 Log.d(TAG, x.toString() + "\n")
             }

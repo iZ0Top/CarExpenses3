@@ -49,7 +49,7 @@ class AddFragment : Fragment(){
         setHasOptionsMenu(true)
 
         mAdapter = AdapterExpense()
-        mRecyclerView = binding.recyclerView
+        mRecyclerView = binding.addRecyclerView
         mRecyclerView.adapter = mAdapter
 
         mEventObserver = Observer {
