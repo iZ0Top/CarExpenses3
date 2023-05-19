@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:padding="5dp">
 
 
     <TextView
@@ -13,7 +14,6 @@
         android:layout_height="wrap_content"
         android:text="•"
         android:textStyle="bold"
-        android:layout_marginStart="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,7 +43,6 @@
         android:id="@+id/child_price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
         android:layout_marginStart="5dp"
         android:gravity="end"
         android:text="99999 грн"

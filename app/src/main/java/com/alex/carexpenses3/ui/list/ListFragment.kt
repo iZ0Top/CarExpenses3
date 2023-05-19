@@ -2,7 +2,6 @@ package com.alex.carexpenses3.ui.list
 
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -10,7 +9,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.ActionBar
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -22,9 +20,8 @@ import com.alex.carexpenses3.model.Car
 import com.alex.carexpenses3.model.Event
 import com.alex.carexpenses3.model.Expense
 import com.alex.carexpenses3.utils.APP_ACTIVITY
-import com.alex.carexpenses3.utils.CURRENT_CAR
-import com.alex.carexpenses3.utils.CURRENT_CAR_ID
 import com.alex.carexpenses3.utils.ODOMETER
+import com.alex.carexpenses3.utils.REPOSITORY
 import com.alex.carexpenses3.utils.TAG
 
 class ListFragment : Fragment() {
@@ -70,16 +67,17 @@ class ListFragment : Fragment() {
         mCarObserver = Observer {
             Log.d(TAG, it.toString())
             mToolbar.title = APP_ACTIVITY.getString(R.string.toolbar_model, it.brand, it.model)
-
         }
 
         mEventsObserver = Observer {
-            mAdapter.setList(it)
+            val listExpenses = REPOSITORY.getAllExpenses {
+                Log.d(TAG, "ListFragment.initObserves.mEventsObserver")
+            }
+            mAdapter.setList(it, listExpenses)
             for (x in  it){
                 if (x.odometer > ODOMETER) ODOMETER = x.odometer
             }
         }
-
         mExpensesObserver = Observer {
             for (x in it) {
                 Log.d(TAG, x.toString() + "\n")

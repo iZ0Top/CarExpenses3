@@ -24,6 +24,7 @@
             android:textStyle="bold"
             android:gravity="start"
             android:textSize="@dimen/size_item_event_header"
+            android:textColor="@color/text_black"
             app:layout_constraintEnd_toStartOf="@+id/item_event_odometer"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,6 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="000000 km"
+            android:textColor="@color/text_black"
             android:textStyle="bold"
             android:textSize="@dimen/size_item_event_header"
             android:gravity="center_horizontal"
@@ -48,6 +50,7 @@
             android:text="0000 uah"
             android:textStyle="bold"
             android:textSize="@dimen/size_item_event_header"
+            android:textColor="@color/text_black"
             android:gravity="end"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/item_event_odometer"

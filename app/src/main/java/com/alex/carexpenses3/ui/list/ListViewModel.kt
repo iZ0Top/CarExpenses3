@@ -32,6 +32,7 @@ class ListViewModel : ViewModel() {
         }
     }
 
+
     fun addCarToDB(onSuccess: () -> Unit){
         Log.d(TAG, "ListViewModel.addCarToDB")
         val car = Car(1, "Volkswagen", "Golf MK4", "WVV111222333444", "10-10-2019", 2001, 1, 175000, 1.4)

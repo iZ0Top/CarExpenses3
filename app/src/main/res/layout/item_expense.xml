@@ -13,13 +13,10 @@
         android:layout_height="match_parent"
         android:padding="5dp">
 
-
-
         <TextView
             android:id="@+id/description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:text="Description"
             android:gravity="start"
             app:layout_constraintEnd_toStartOf="@+id/quantity"
@@ -43,7 +40,6 @@
             android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
             android:lines="1"
             android:text="0000 грн"
             android:gravity="end"
