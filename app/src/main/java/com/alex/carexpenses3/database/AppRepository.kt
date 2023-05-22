@@ -16,12 +16,6 @@ class AppRepository(private val appDao: AppDao): DatabaseRepository {
     override val allExpenses: LiveData<List<Expense>>
         get() = appDao.getExpenses()
 
-    override fun getAllExpenses(onSuccess: () -> Unit): List<Expense> {
-        val list = appDao.getAllExpenses()
-        onSuccess()
-        return list
-    }
-
     override suspend fun insertCar(car: Car, onSuccess: () -> Unit) {
         appDao.insertCar(car)
         onSuccess()

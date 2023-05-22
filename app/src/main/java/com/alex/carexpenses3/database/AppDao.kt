@@ -21,9 +21,6 @@ interface AppDao {
     @Query("SELECT * FROM table_expenses")
     fun getExpenses(): LiveData<List<Expense>>
 
-    @Query("SELECT * FROM table_expenses")
-    fun getAllExpenses(): List<Expense>
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCar(car: Car)
     @Insert

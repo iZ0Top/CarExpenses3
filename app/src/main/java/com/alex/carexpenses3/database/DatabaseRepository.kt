@@ -11,7 +11,6 @@ interface DatabaseRepository {
     val allEvents: LiveData<List<Event>>
     val allExpenses: LiveData<List<Expense>>
 
-    suspend fun getAllExpenses(onSuccess: () -> Unit): List<Expense>
     suspend fun insertCar(car: Car, onSuccess: () -> Unit)
     suspend fun insertEvent(event: Event, onSuccess: () -> Unit): Long
     suspend fun insertExpensesList(expensesList: List<Expense>, onSuccess: () -> Unit)

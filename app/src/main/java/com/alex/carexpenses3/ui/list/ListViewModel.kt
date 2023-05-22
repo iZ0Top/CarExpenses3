@@ -32,6 +32,10 @@ class ListViewModel : ViewModel() {
         }
     }
 
+    fun getListExpenses(){
+
+    }
+
 
     fun addCarToDB(onSuccess: () -> Unit){
         Log.d(TAG, "ListViewModel.addCarToDB")

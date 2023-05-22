@@ -70,10 +70,11 @@ class ListFragment : Fragment() {
         }
 
         mEventsObserver = Observer {
-            val listExpenses = REPOSITORY.getAllExpenses {
-                Log.d(TAG, "ListFragment.initObserves.mEventsObserver")
-            }
-            mAdapter.setList(it, listExpenses)
+            //якщо змінився список Івентів, запитатии список Експенсів
+            mListViewModel.
+
+
+            mAdapter.setList(it)
             for (x in  it){
                 if (x.odometer > ODOMETER) ODOMETER = x.odometer
             }

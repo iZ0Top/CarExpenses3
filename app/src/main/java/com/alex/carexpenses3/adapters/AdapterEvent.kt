@@ -16,10 +16,9 @@ class AdapterEvent: RecyclerView.Adapter<AdapterEvent.MyHolder>() {
     var listEvents = emptyList<Event>()
     var listExpenses = emptyList<Expense>()
 
-    fun setList(listEvents: List<Event>, listExpenses: List<Expense>){
-        Log.d(TAG, "AdapterEvent.setList, listEvents size = ${listEvents.size}, listExpenses size = ${listExpenses.size}")
+    fun setList(listEvents: List<Event>){
+        Log.d(TAG, "AdapterEvent.setList, listEvents size = ${listEvents.size}")
         this.listEvents = listEvents
-        this.listExpenses = listExpenses
         notifyDataSetChanged()
     }
 
