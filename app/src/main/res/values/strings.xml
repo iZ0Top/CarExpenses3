@@ -4,27 +4,28 @@
     <string name="title_list">List</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="text_quantity">Кількість</string>
+    <string name="text_quantity">Quantity</string>
     <string name="hint_0">0</string>
-    <string name="hint_description">Назава деталі</string>
-    <string name="hint_description_detail">Опис деталі</string>
-    <string name="hint_part_number">Номер деталі</string>
-    <string name="text_price">Ціна</string>
-    <string name="text_quantity_title">шт</string>
-    <string name="text_price_title">грн</string>
+    <string name="hint_description">Detail name</string>
+    <string name="hint_description_detail">Detail description</string>
+    <string name="hint_part_number">Part number</string>
+    <string name="text_price">Price</string>
+    <string name="text_quantity_title">pcs</string>
+    <string name="text_price_title">uah</string>
     <string name="text_1">1</string>
     <string name="toolbar_model">%1$s %2$s</string>
-    <string name="text_km_template">%1$d км</string>
-    <string name="text_quantity_template">%1$d шт</string>
-    <string name="text_currency_template">%1$.1f грн</string>
-
+    <string name="text_km_template">%1$d km</string>
+    <string name="text_quantity_template">%1$d pcs</string>
+    <string name="text_currency_template">%1$.1f uah</string>
+    <string name="text_please_add">Add at least one entry!</string>
+    <string name="text_add_mileage">Enter the mileage</string>
 
     <string-array name="fuel_type">
-        <item>електро</item>
-        <item>бензин</item>
-        <item>газ</item>
-        <item>газ\бензин</item>
-        <item>дизель</item>
+        <item>Electric</item>
+        <item>Gas</item>
+        <item>LPG</item>
+        <item>LPG\Gas</item>
+        <item>Diesel</item>
     </string-array>
 
 </resources>

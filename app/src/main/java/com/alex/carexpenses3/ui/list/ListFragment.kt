@@ -71,9 +71,6 @@ class ListFragment : Fragment() {
 
         mEventsObserver = Observer {
             //якщо змінився список Івентів, запитатии список Експенсів
-            mListViewModel.
-
-
             mAdapter.setList(it)
             for (x in  it){
                 if (x.odometer > ODOMETER) ODOMETER = x.odometer

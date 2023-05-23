@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.alex.carexpenses3.databinding.FragmentAddDialogBinding
 import com.alex.carexpenses3.model.Expense
+import com.alex.carexpenses3.utils.DIALOG_ADD_RESULT_KEY
 import com.alex.carexpenses3.utils.TAG
 
 class AddDialog: DialogFragment(), View.OnClickListener {
@@ -79,7 +80,7 @@ class AddDialog: DialogFragment(), View.OnClickListener {
 
         val bundle = Bundle()
         bundle.putSerializable("bundle_key", expense)
-        parentFragmentManager.setFragmentResult("result_key", bundle )
+        parentFragmentManager.setFragmentResult(DIALOG_ADD_RESULT_KEY, bundle )
         onSuccess()
 
     }

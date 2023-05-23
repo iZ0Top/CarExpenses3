@@ -22,14 +22,14 @@ class AddViewModel(application: Application): AndroidViewModel(application) {
 
     var eventLD = MutableLiveData<Event>()
     var listExpensesLD = MutableLiveData<List<Expense>>()
-    private var event: Event
+    private var currentEvent: Event
     private var listExpenses = mutableListOf<Expense>()
     private val dateFormatForDB = SimpleDateFormat("yyyy-MM-dd HH:MM:SS", Locale.US)
 
     init {
         Log.d(TAG, "AddViewModel.init")
-        event = Event(odometer = ODOMETER, date = dateFormatForDB.format(Date()))
-        eventLD.postValue(event)
+        currentEvent = Event(odometer = ODOMETER, date = dateFormatForDB.format(Date()))
+        eventLD.postValue(currentEvent)
     }
 
     fun addExpenseToList(expense: Expense){
@@ -39,8 +39,8 @@ class AddViewModel(application: Application): AndroidViewModel(application) {
         for (s in listExpenses){
             sum += (s.price * s.quantity)
         }
-        event.sum = sum
-        eventLD.postValue(event)
+        currentEvent.sum = sum
+        eventLD.postValue(currentEvent)
         listExpensesLD.postValue(listExpenses)
     }
 
@@ -51,8 +51,8 @@ class AddViewModel(application: Application): AndroidViewModel(application) {
 
     fun setNewOdometer(odometer: Int){
         Log.d(TAG, "AddViewModel.setNewOdometer")
-        event.odometer = odometer
-        eventLD.postValue(event)
+        currentEvent.odometer = odometer
+        eventLD.postValue(currentEvent)
         ODOMETER = odometer
     }
     fun setNewDate(){
@@ -62,7 +62,7 @@ class AddViewModel(application: Application): AndroidViewModel(application) {
     fun addEventToDB(onSuccess: () -> Unit){
         Log.d(TAG, "AddViewModel.addEventToDB")
         viewModelScope.launch(Dispatchers.IO) {
-            currentId = REPOSITORY.insertEvent(event) {
+            currentId = REPOSITORY.insertEvent(currentEvent) {
                 viewModelScope.launch(Dispatchers.Main){
                     onSuccess()
                 }
@@ -73,8 +73,8 @@ class AddViewModel(application: Application): AndroidViewModel(application) {
     fun updateData(onSuccess: () -> Unit){
         Log.d(TAG, "AddViewModel.updateData")
         for (x in listExpenses){
-            x.date = event.date
-            x.odometer = event.odometer
+            x.date = currentEvent.date
+            x.odometer = currentEvent.odometer
             x.parent_id = currentId.toInt()
         }
         onSuccess()
@@ -91,4 +91,10 @@ class AddViewModel(application: Application): AndroidViewModel(application) {
             }
         }
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        Log.d(TAG, "AddViewModel.onCleared")
+    }
+
 }

@@ -5,9 +5,6 @@ import android.content.SharedPreferences
 
 object Preferences {
 
-
-
-    private const val PREF_NAME = "pref_name"
     private lateinit var mPreferences: SharedPreferences
 
     fun getPreferences(context: Context){
@@ -21,4 +18,8 @@ object Preferences {
     fun getCurrentCarId(){
 
     }
+
+
+
+
 }

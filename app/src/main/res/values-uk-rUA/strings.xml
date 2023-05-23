@@ -1,4 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">CarExpenses3</string>
+    <string name="title_info">Info</string>
+    <string name="title_list">List</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_quantity">Кількість</string>
+    <string name="hint_0">0</string>
+    <string name="hint_description">Назава деталі</string>
+    <string name="hint_description_detail">Опис деталі</string>
+    <string name="hint_part_number">Номер деталі</string>
+    <string name="text_price">Ціна</string>
+    <string name="text_quantity_title">шт</string>
+    <string name="text_price_title">грн</string>
+    <string name="text_1">1</string>
+    <string name="toolbar_model">%1$s %2$s</string>
+    <string name="text_km_template">%1$d км</string>
+    <string name="text_quantity_template">%1$d шт</string>
+    <string name="text_currency_template">%1$.1f грн</string>
+    <string name="text_please_add">Додайте хоча б один запис!</string>
+    <string name="text_add_mileage">Вкажіть пробіг</string>
+
+
+    <string-array name="fuel_type">
+        <item>електро</item>
+        <item>бензин</item>
+        <item>газ</item>
+        <item>газ\бензин</item>
+        <item>дизель</item>
+    </string-array>
 
 </resources>

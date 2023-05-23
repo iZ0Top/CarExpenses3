@@ -20,6 +20,8 @@ import com.alex.carexpenses3.model.Event
 import com.alex.carexpenses3.model.Expense
 import com.alex.carexpenses3.ui.dialogs.AddDialog
 import com.alex.carexpenses3.utils.APP_ACTIVITY
+import com.alex.carexpenses3.utils.DIALOG_ADD_RESULT_KEY
+import com.alex.carexpenses3.utils.DIALOG_ADD_TAG
 import com.alex.carexpenses3.utils.TAG
 import com.alex.carexpenses3.utils.showToast
 
@@ -65,23 +67,24 @@ class AddFragment : Fragment(){
 
         binding.fab.setOnClickListener {
             val dialog = AddDialog()
-            dialog.show(childFragmentManager, "dialog_tag")
+            dialog.show(childFragmentManager, DIALOG_ADD_TAG)
         }
     }
 
     override fun onResume() {
         super.onResume()
-        childFragmentManager.setFragmentResultListener("result_key", this) { _, result ->
+
+        childFragmentManager.setFragmentResultListener(DIALOG_ADD_RESULT_KEY, this) { _, result ->
             Log.d(TAG, "AddFragment.childFragmentManager.setFragmentResultListener")
             val expense = result.getSerializable("bundle_key") as Expense
             addViewModel.addExpenseToList(expense)
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.toolbar_menu_add, menu)
     }
-
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
@@ -90,11 +93,11 @@ class AddFragment : Fragment(){
         when(item.itemId){
             R.id.menu_save -> {
                 if (newOdometer == null) {
-                    binding.edittextOdometer.error = "is empty !"
+                    binding.edittextOdometer.error = APP_ACTIVITY.getString(R.string.text_add_mileage)
                     return false
                 }
                 if (addViewModel.listExpensesLD.value.isNullOrEmpty()){
-                    showToast("Додайте хоча б один запис !")
+                    showToast(APP_ACTIVITY.getString(R.string.text_please_add))
                     return false
                 }
                 addViewModel.setNewOdometer(newOdometer)
