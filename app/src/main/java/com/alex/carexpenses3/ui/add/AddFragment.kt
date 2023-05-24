@@ -93,11 +93,11 @@ class AddFragment : Fragment(){
         when(item.itemId){
             R.id.menu_save -> {
                 if (newOdometer == null) {
-                    binding.edittextOdometer.error = APP_ACTIVITY.getString(R.string.text_add_mileage)
+                    binding.edittextOdometer.error = requireActivity().getString(R.string.text_add_mileage)
                     return false
                 }
                 if (addViewModel.listExpensesLD.value.isNullOrEmpty()){
-                    showToast(APP_ACTIVITY.getString(R.string.text_please_add))
+                    showToast(requireActivity().getString(R.string.text_please_add))
                     return false
                 }
                 addViewModel.setNewOdometer(newOdometer)
