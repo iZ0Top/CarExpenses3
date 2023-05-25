@@ -9,7 +9,8 @@
     android:layout_margin="5dp"
     app:cardElevation="10dp"
     app:cardCornerRadius="10dp"
-    app:cardBackgroundColor="#F3F3F3">
+    app:cardBackgroundColor="#F3F3F3"
+    android:background="?android:attr/selectableItemBackground">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -21,40 +22,34 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="01.01.0001"
-            android:textStyle="bold"
             android:gravity="start"
-            android:textSize="@dimen/size_item_event_header"
-            android:textColor="@color/text_black"
             app:layout_constraintEnd_toStartOf="@+id/item_event_odometer"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/item_text_style" />
 
         <TextView
             android:id="@+id/item_event_odometer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="000000 km"
-            android:textColor="@color/text_black"
-            android:textStyle="bold"
-            android:textSize="@dimen/size_item_event_header"
             android:gravity="center_horizontal"
             app:layout_constraintBottom_toTopOf="@id/item_recycler_view"
             app:layout_constraintEnd_toStartOf="@id/item_event_sum"
             app:layout_constraintStart_toEndOf="@id/item_event_date"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/item_text_style"/>
 
         <TextView
             android:id="@+id/item_event_sum"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="0000 uah"
-            android:textStyle="bold"
-            android:textSize="@dimen/size_item_event_header"
-            android:textColor="@color/text_black"
             android:gravity="end"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/item_event_odometer"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/item_text_style"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/item_recycler_view"
@@ -63,7 +58,11 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="2dp"
+            tools:listitem="@layout/item_event_child"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/item_event_odometer" />
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

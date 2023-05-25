@@ -14,35 +14,30 @@ class AdapterEventChild : RecyclerView.Adapter<AdapterEventChild.ChildEventHolde
 
     private var listExpense = emptyList<Expense>()
 
-    fun setData(list: List<Expense>) {
-        Log.d(TAG, "AdapterEventChild.setData, list size = ${list.size}")
-        listExpense = list
-        notifyDataSetChanged()
-    }
+    class ChildEventHolder(val binding: ItemEventChildBinding) : RecyclerView.ViewHolder(binding.root)
+
+    override fun getItemCount(): Int = listExpense.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChildEventHolder {
         val binding = ItemEventChildBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ChildEventHolder(binding)
     }
 
-    override fun getItemCount() = listExpense.size
-
     override fun onBindViewHolder(holder: ChildEventHolder, position: Int) {
         Log.d(TAG, "AdapterEventChild.onBindViewHolder")
         val expense = listExpense[position]
-
-        holder.description.text = expense.description
-        holder.descriptionDetail.text = expense.detailDescription
-        holder.partNum.text = expense.partNum
-        holder.quantity.text = APP_ACTIVITY.getString(R.string.text_quantity_template, expense.quantity)
-        holder.price.text = APP_ACTIVITY.getString(R.string.text_currency_template, expense.price)
+        with(holder.binding){
+            childDescription.text = expense.description
+            childDescriptionDetail.text = expense.detailDescription
+            childPartNum.text = expense.partNum
+            childQuantity.text = APP_ACTIVITY.getString(R.string.text_quantity_template, expense.quantity)
+            childPrice.text = APP_ACTIVITY.getString(R.string.text_currency_template, expense.price)
+        }
     }
 
-    class ChildEventHolder(binding: ItemEventChildBinding) : RecyclerView.ViewHolder(binding.root) {
-        val description = binding.childDescription
-        val descriptionDetail = binding.childDescriptionDetail
-        val partNum = binding.childPartNum
-        val quantity = binding.childQuantity
-        val price = binding.childPrice
+    fun setData(list: List<Expense>) {
+        Log.d(TAG, "AdapterEventChild.setData, list size = ${list.size}")
+        listExpense = list
+        notifyDataSetChanged()
     }
 }

@@ -112,7 +112,6 @@ class AddFragment : Fragment(){
         }
         return super.onOptionsItemSelected(item)
     }
-
     override fun onDestroy() {
         super.onDestroy()
         addViewModel.eventLD.removeObserver(mEventObserver)

@@ -1,5 +1,6 @@
 package com.alex.carexpenses3.ui.list
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,6 +21,7 @@ import com.alex.carexpenses3.model.Car
 import com.alex.carexpenses3.model.Event
 import com.alex.carexpenses3.model.Expense
 import com.alex.carexpenses3.utils.APP_ACTIVITY
+import com.alex.carexpenses3.utils.Decorator
 import com.alex.carexpenses3.utils.ODOMETER
 import com.alex.carexpenses3.utils.REPOSITORY
 import com.alex.carexpenses3.utils.TAG
@@ -31,7 +33,6 @@ class ListFragment : Fragment() {
     lateinit var mListViewModel: ListViewModel
     private lateinit var mCarObserver: Observer<Car>
     private lateinit var mEventsObserver: Observer<List<Event>>
-    private lateinit var mExpensesObserver: Observer<List<Expense>>
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var mAdapter: AdapterEvent
     private lateinit var mToolbar: ActionBar
@@ -54,10 +55,10 @@ class ListFragment : Fragment() {
         mRecyclerView = binding.listRecyclerView
         mAdapter = AdapterEvent()
         mRecyclerView.adapter = mAdapter
+        mRecyclerView.addItemDecoration(Decorator(5))
 
         mListViewModel.car.observe(viewLifecycleOwner, mCarObserver)
         mListViewModel.listEvents.observe(viewLifecycleOwner, mEventsObserver)
-        mListViewModel.listExpenses.observe(viewLifecycleOwner, mExpensesObserver)
 
     }
 
@@ -71,14 +72,16 @@ class ListFragment : Fragment() {
 
         mEventsObserver = Observer {
             //якщо змінився список Івентів, запитатии список Експенсів
-            mAdapter.setList(it)
-            for (x in  it){
-                if (x.odometer > ODOMETER) ODOMETER = x.odometer
-            }
-        }
-        mExpensesObserver = Observer {
-            for (x in it) {
-                Log.d(TAG, x.toString() + "\n")
+
+            if (it.isNotEmpty()) {
+                binding.listTvNoEvent.visibility = View.INVISIBLE
+
+                val listExpenses = mutableListOf<Expense>()
+
+
+                listExpenses.add(Expense(1, 0, 0, 123456, 1, 168.0, "01-01-2000", "Фільтр масляний", "Man 9999", "ABC181920"))
+
+                mAdapter.setList(it, listExpenses)
             }
         }
     }

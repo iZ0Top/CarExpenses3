@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.alex.carexpenses3.database.AppDatabase
 import com.alex.carexpenses3.database.AppRepository
 import com.alex.carexpenses3.model.Car
+import com.alex.carexpenses3.model.Expense
 import com.alex.carexpenses3.utils.APP_ACTIVITY
 import com.alex.carexpenses3.utils.REPOSITORY
 import com.alex.carexpenses3.utils.TAG
@@ -32,9 +33,11 @@ class ListViewModel : ViewModel() {
         }
     }
 
-    fun getListExpenses(){
-
+    fun getListExpenses(): List<Expense>{
+        
+        return REPOSITORY.getAllExpenses()
     }
+
 
 
     fun addCarToDB(onSuccess: () -> Unit){

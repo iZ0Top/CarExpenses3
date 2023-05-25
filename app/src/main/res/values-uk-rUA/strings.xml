@@ -19,6 +19,7 @@
     <string name="text_currency_template">%1$.1f грн</string>
     <string name="text_please_add">Додайте хоча б один запис!</string>
     <string name="text_add_mileage">Вкажіть пробіг</string>
+    <string name="text_no_entries">Записів ще немає</string>
 
 
     <string-array name="fuel_type">

@@ -19,6 +19,8 @@
     <string name="text_currency_template">%1$.1f uah</string>
     <string name="text_please_add">Add at least one entry!</string>
     <string name="text_add_mileage">Enter the mileage</string>
+    <string name="text_no_entries">There are no entries yet</string>
+    <string name="text_save">Save</string>
 
     <string-array name="fuel_type">
         <item>Electric</item>
