@@ -33,9 +33,16 @@ class ListViewModel : ViewModel() {
         }
     }
 
-    fun getListExpenses(): List<Expense>{
-        
-        return REPOSITORY.getAllExpenses()
+    fun getListExpenses(onSuccess: () -> Unit): List<Expense>{
+        var listExpenses = emptyList<Expense>()
+        viewModelScope.launch(Dispatchers.IO){
+            listExpenses = REPOSITORY.getAllExpenses(){
+                viewModelScope.launch(Dispatchers.Main){
+                    onSuccess()
+                }
+            }
+        }
+        return listExpenses
     }
 
 

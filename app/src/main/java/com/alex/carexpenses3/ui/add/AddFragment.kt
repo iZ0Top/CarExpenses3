@@ -1,5 +1,7 @@
 package com.alex.carexpenses3.ui.add
 
+import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +11,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -24,6 +27,7 @@ import com.alex.carexpenses3.utils.DIALOG_ADD_RESULT_KEY
 import com.alex.carexpenses3.utils.DIALOG_ADD_TAG
 import com.alex.carexpenses3.utils.TAG
 import com.alex.carexpenses3.utils.showToast
+import java.util.Calendar
 
 class AddFragment : Fragment(){
 
@@ -61,7 +65,6 @@ class AddFragment : Fragment(){
         }
 
         mExpenseObserver = Observer { mAdapter.setList(it) }
-
         addViewModel.eventLD.observe(viewLifecycleOwner, mEventObserver)
         addViewModel.listExpensesLD.observe(viewLifecycleOwner, mExpenseObserver)
 
@@ -69,6 +72,12 @@ class AddFragment : Fragment(){
             val dialog = AddDialog()
             dialog.show(childFragmentManager, DIALOG_ADD_TAG)
         }
+
+        binding.textDate.setOnClickListener {
+            val t = Calendar.getInstance()
+            val d = DatePickerDialog(APP_ACTIVITY, null, t.get(Calendar.YEAR), t.get(Calendar.MONTH), t.get(Calendar.DAY_OF_MONTH)).show()
+        }
+
     }
 
     override fun onResume() {
@@ -79,7 +88,6 @@ class AddFragment : Fragment(){
             val expense = result.getSerializable("bundle_key") as Expense
             addViewModel.addExpenseToList(expense)
         }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -87,11 +95,11 @@ class AddFragment : Fragment(){
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         val newOdometer = binding.edittextOdometer.text.toString().toIntOrNull()
-
         when(item.itemId){
             R.id.menu_save -> {
+                Log.d(TAG, "AddFragment.onOptionsItemSelected.selected btn save")
+
                 if (newOdometer == null) {
                     binding.edittextOdometer.error = requireActivity().getString(R.string.text_add_mileage)
                     return false
@@ -102,10 +110,10 @@ class AddFragment : Fragment(){
                 }
                 addViewModel.setNewOdometer(newOdometer)
                 addViewModel.addEventToDB {
-                    addViewModel.updateData(){
-                        addViewModel.addExpensesListToDB {
-                            APP_ACTIVITY.navController.navigate(R.id.action_addFragment_to_navigation_list)
-                        }
+                    Log.d(TAG, "AddFragment.onOptionsItemSelected.selected btn save = addExpensesListToDB callback")
+                    addViewModel.addExpensesListToDB {
+                        Log.d(TAG, "AddFragment.onOptionsItemSelected.selected btn save = addEventToDB callback")
+                        APP_ACTIVITY.navController.navigate(R.id.action_addFragment_to_navigation_list)
                     }
                 }
             }
@@ -118,4 +126,7 @@ class AddFragment : Fragment(){
         mRecyclerView.adapter = null
         _binding = null
     }
+
+
+
 }

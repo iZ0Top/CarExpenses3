@@ -13,6 +13,7 @@ import com.alex.carexpenses3.utils.TAG
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
@@ -20,6 +21,7 @@ class AddViewModel(application: Application): AndroidViewModel(application) {
 
     var currentId = 0L
 
+    var dateLD = MutableLiveData<Date>()
     var eventLD = MutableLiveData<Event>()
     var listExpensesLD = MutableLiveData<List<Expense>>()
     private var currentEvent: Event
@@ -28,12 +30,14 @@ class AddViewModel(application: Application): AndroidViewModel(application) {
 
     init {
         Log.d(TAG, "AddViewModel.init")
+        dateLD.value = Date()
         currentEvent = Event(odometer = ODOMETER, date = dateFormatForDB.format(Date()))
         eventLD.postValue(currentEvent)
     }
 
     fun addExpenseToList(expense: Expense){
         Log.d(TAG, "AddViewModel.addExpenseToList")
+        val e = eventLD.value
         listExpenses.add(expense)
         var sum = 0.0
         for (s in listExpenses){
@@ -55,8 +59,19 @@ class AddViewModel(application: Application): AndroidViewModel(application) {
         eventLD.postValue(currentEvent)
         ODOMETER = odometer
     }
-    fun setNewDate(){
 
+    fun setNewDate(date: Date){
+        currentEvent.date = dateFormatForDB.format(date)
+        dateLD.postValue(date)
+    }
+
+    private fun updateData(){
+        Log.d(TAG, "AddViewModel.updateData")
+        for (x in listExpenses){
+            x.date = currentEvent.date
+            x.odometer = currentEvent.odometer
+            x.parent_id = currentId.toInt()
+        }
     }
 
     fun addEventToDB(onSuccess: () -> Unit){
@@ -64,22 +79,12 @@ class AddViewModel(application: Application): AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO) {
             currentId = REPOSITORY.insertEvent(currentEvent) {
                 viewModelScope.launch(Dispatchers.Main){
+                    updateData()
                     onSuccess()
                 }
             }
         }
     }
-
-    fun updateData(onSuccess: () -> Unit){
-        Log.d(TAG, "AddViewModel.updateData")
-        for (x in listExpenses){
-            x.date = currentEvent.date
-            x.odometer = currentEvent.odometer
-            x.parent_id = currentId.toInt()
-        }
-        onSuccess()
-    }
-
     fun addExpensesListToDB(onSuccess:() -> Unit){
         Log.d(TAG, "AddViewModel.addExpensesListToDB")
         viewModelScope.launch(Dispatchers.IO) {

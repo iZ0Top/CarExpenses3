@@ -72,15 +72,12 @@ class ListFragment : Fragment() {
 
         mEventsObserver = Observer {
             //якщо змінився список Івентів, запитатии список Експенсів
-
             if (it.isNotEmpty()) {
+                Log.d(TAG, "ListFragment.initObserves")
                 binding.listTvNoEvent.visibility = View.INVISIBLE
-
-                val listExpenses = mutableListOf<Expense>()
-
-
-                listExpenses.add(Expense(1, 0, 0, 123456, 1, 168.0, "01-01-2000", "Фільтр масляний", "Man 9999", "ABC181920"))
-
+                val listExpenses = mListViewModel.getListExpenses {
+                    Log.d(TAG, "ListFragment.initObserves.mEventsObserver = callback")
+                }
                 mAdapter.setList(it, listExpenses)
             }
         }
